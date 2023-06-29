@@ -1,10 +1,12 @@
 import './index.css'
 import {useHistory} from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 const Home = () => {
   const history = useHistory()
 
   const handleHistory = () => {
+    Cookies.remove('jwt_token')
     history.replace('/ebank/login')
   }
   return (

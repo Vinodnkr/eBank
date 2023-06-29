@@ -8,6 +8,7 @@ class Login extends Component {
     userId: '',
     pin: '',
     pinError: false,
+    errorMsg: '',
   }
 
   handleChange = event => {
@@ -21,39 +22,30 @@ class Login extends Component {
   handleSubmit = async event => {
     event.preventDefault()
     const {userId, pin} = this.state
-    const {history} = this.props
-
-    // Construct the request body
-    const requestBody = {
-      user_id: userId,
-      pin: pin,
-    }
-
-    // Make the API call
-    fetch('https://apis.ccbp.in/ebank/login', {
+    const userDetails = {user_id: userId, pin}
+    console.log(userDetails)
+    const url = 'https://apis.ccbp.in/ebank/login'
+    const options = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody),
-    })
-      .then(response => response.json())
-      .then(data => {
-        // Handle the API response
-        if (data.jwt_token) {
-          // Login success, perform necessary actions
-          console.log('Login success!')
-          console.log('JWT Token:', data.jwt_token)
-          // eslint-disable-next-line no-undef
-          Cookies.set('jwt_token', jwtToken, {expires: 3})
+      body: JSON.stringify(userDetails),
+    }
+    const response = await fetch(url, options)
+    const data = await response.json()
+    if (response.ok === true) {
+      this.onSuccess(data.jwt_token)
+    } else {
+      this.setState({pinError: true, errorMsg: data.error_msg})
+    }
+  }
 
-          history.replace('/')
-        }
-      })
+  onSuccess = jwtToken => {
+    Cookies.set('jwt_token', jwtToken, {expires: 3})
+    const {history} = this.props
+    history.replace('/')
   }
 
   render() {
-    const {userId, pin, pinError} = this.state
+    const {userId, pin, pinError, errorMsg} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
@@ -103,7 +95,7 @@ class Login extends Component {
               <button type="submit" className="login-button">
                 Login
               </button>
-              {pinError && <p style={{color: 'red'}}>Invalid user ID</p>}
+              {pinError && <p style={{color: 'red'}}>{errorMsg}</p>}
             </form>
           </div>
         </div>
