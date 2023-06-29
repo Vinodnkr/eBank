@@ -1,0 +1,68 @@
+/* index.css */
+
+/* Main background */
+.bg {
+  background-color: #183b56;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login container */
+.bg1 {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  padding: 40px;
+  border-radius: 28px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Login image */
+.login-img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+/* Login form container */
+.login-container {
+  text-align: center;
+}
+
+/* Form label */
+.label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+/* Form input field */
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+/* Login button */
+.login-button {
+  background-color: #4fa94d;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #3d8540;
+}

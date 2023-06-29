@@ -1,0 +1,30 @@
+.bgh {
+  background-color: #152850;
+  color: white;
+  height: 100vh;
+}
+.bgh1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.btn {
+  background-color: transparent;
+  color: white;
+  border-color: white;
+  height: 30px;
+}
+
+.img {
+  width: 70vw;
+  text-align: center;
+}
+
+.cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
